@@ -1,8 +1,7 @@
-package com.sik.thymeleaf.entity;
+package com.sik.pattest.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.stereotype.Controller;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.sik.thymeleaf.config;
+package com.sik.pattest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

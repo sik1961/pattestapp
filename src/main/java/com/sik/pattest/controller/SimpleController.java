@@ -1,4 +1,4 @@
-package com.sik.thymeleaf.controller;
+package com.sik.pattest.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

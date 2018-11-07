@@ -1,6 +1,6 @@
-package com.sik.thymeleaf.repository;
+package com.sik.pattest.repository;
 
-import com.sik.thymeleaf.entity.Customer;
+import com.sik.pattest.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
