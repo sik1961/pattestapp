@@ -149,9 +149,9 @@ public class TestResult {
             testResult.overallPass = this.overallPass;
             testResult.remarks = this.remarks;
             testResult.customerId = this.customerId;
-            return this.isValid(testResult) ? testResult : null;
+            return this.ifValid(testResult);
         }
-        private boolean isValid(TestResult testResult) {
+        private TestResult ifValid(TestResult testResult) {
             if (testResult.testDate == null) {
                 throw new IllegalArgumentException("Class 1: Test Date may not be null");
             }
@@ -185,7 +185,7 @@ public class TestResult {
                     throw new IllegalArgumentException("Class 2: Insulation MOhms may not be null");
                 }
             }
-            return true;
+            return testResult;
         }
     }
 }

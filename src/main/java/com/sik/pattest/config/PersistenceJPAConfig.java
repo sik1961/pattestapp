@@ -1,5 +1,6 @@
 package com.sik.pattest.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -19,12 +20,24 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class PersistenceJPAConfig{
 
+    @Value("${jdbc.driver.class.name}")
+    String jdbcDriverClass;
+
+    @Value("${jdbc.datasource.url}")
+    String jdbcDatasourceUrl;
+
+    @Value("${jdbc.datasource.user}")
+    String jdbcDatasourceUser;
+
+    @Value("${jdbc.datasource.pass}")
+    String jdbcDatasourcePass;
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.sik.pattest.entity" });
+        em.setPackagesToScan(new String[] {"com.sik.pattest.entity"});
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -36,10 +49,10 @@ public class PersistenceJPAConfig{
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/pattest");
-        dataSource.setUsername("root");
-        dataSource.setPassword("l203dax!");
+        dataSource.setDriverClassName(jdbcDriverClass);
+        dataSource.setUrl(jdbcDatasourceUrl);
+        dataSource.setUsername(jdbcDatasourceUser);
+        dataSource.setPassword(jdbcDatasourcePass);
         return dataSource;
     }
 
@@ -57,12 +70,12 @@ public class PersistenceJPAConfig{
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    Properties additionalProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.setProperty(
-                "hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-
-        return properties;
-    }
+//    Properties additionalProperties() {
+//        Properties properties = new Properties();
+//        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+//        properties.setProperty(
+//                "hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//
+//        return properties;
+//    }
 }
