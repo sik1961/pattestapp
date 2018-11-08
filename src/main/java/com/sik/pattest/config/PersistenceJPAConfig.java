@@ -41,7 +41,7 @@ public class PersistenceJPAConfig{
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(additionalProperties());
+        //em.setJpaProperties(additionalProperties());
 
         return em;
     }
