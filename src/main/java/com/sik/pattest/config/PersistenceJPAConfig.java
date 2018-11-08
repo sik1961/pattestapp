@@ -19,10 +19,11 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@PropertySources(
- //       @PropertySource("file:${props.location}/application.properties"),
-        @PropertySource("classpath:application.properties")
-)
+@PropertySource({
+        "classpath:application.properties",
+        "classpath:hibernate.properties"
+})
+
 @EnableTransactionManagement
 public class PersistenceJPAConfig{
 
@@ -43,11 +44,11 @@ public class PersistenceJPAConfig{
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] {"com.sik.pattest.entity","com.sik.pattest.repository",});
+        em.setPackagesToScan(new String[] {"com.sik.pattest.entity"});
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(additionalProperties());
+        //em.setJpaProperties(additionalProperties());
 
         return em;
     }
@@ -76,11 +77,4 @@ public class PersistenceJPAConfig{
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    Properties additionalProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "validate");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
-
-        return properties;
-    }
 }
