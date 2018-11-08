@@ -3,6 +3,8 @@ package com.sik.pattest.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,6 +19,10 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@PropertySources(
+ //       @PropertySource("file:${props.location}/application.properties"),
+        @PropertySource("classpath:application.properties")
+)
 @EnableTransactionManagement
 public class PersistenceJPAConfig{
 
@@ -41,7 +47,7 @@ public class PersistenceJPAConfig{
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        //em.setJpaProperties(additionalProperties());
+        em.setJpaProperties(additionalProperties());
 
         return em;
     }
@@ -70,12 +76,11 @@ public class PersistenceJPAConfig{
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-//    Properties additionalProperties() {
-//        Properties properties = new Properties();
-//        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-//        properties.setProperty(
-//                "hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-//
-//        return properties;
-//    }
+    Properties additionalProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+
+        return properties;
+    }
 }

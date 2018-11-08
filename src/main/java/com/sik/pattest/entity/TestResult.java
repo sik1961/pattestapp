@@ -13,6 +13,7 @@ public class TestResult {
     private static final Integer CLASS_1 = 1;
     private static final Integer CLASS_2 = 2;
 
+    @Id
     @Column(unique=true, nullable=false)
     private String id;
 

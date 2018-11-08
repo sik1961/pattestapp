@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 @Table(schema="pattest", name="customer", catalog="")
 public class Customer {
 
+    @Id
     @Column(unique=true, nullable=false)
     private String id;
 
