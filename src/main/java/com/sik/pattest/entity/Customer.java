@@ -1,8 +1,6 @@
 package com.sik.pattest.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +10,9 @@ import javax.persistence.Table;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(schema="pattest", name="customer", catalog="")
+@Table(schema="pattest", name="customers", catalog="")
 public class Customer {
 
     @Id

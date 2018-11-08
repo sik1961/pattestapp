@@ -1,11 +1,15 @@
 package com.sik.pattest.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(schema="pattest", name="testresults", catalog="")
 public class TestResult {
@@ -30,7 +34,7 @@ public class TestResult {
     private Integer assetClass;
 
     @Column(name="visualpass", nullable=false)
-    private PassFail visualPass;
+    private String visualPass;
 
     @Column(name="fuserating", nullable=false)
     private Integer fuseRating;
@@ -45,10 +49,10 @@ public class TestResult {
     private Double leakageMilliAmps;
 
     @Column(name="polaritypass")
-    private PassFail polarityPass;
+    private String polarityPass;
 
     @Column(name="overallPass", nullable=false)
-    private PassFail overallPass;
+    private String overallPass;
 
     @Column
     private String remarks;
@@ -69,13 +73,13 @@ public class TestResult {
         private String assetid;
         private String site;
         private Integer assetClass;
-        private PassFail visualPass;
+        private String visualPass;
         private Integer fuseRating;
         private Double earthBondOhms;
         private Double insulationMegaOhms;
         private Double leakageMilliAmps;
-        private PassFail polarityPass;
-        private PassFail overallPass;
+        private String polarityPass;
+        private String overallPass;
         private String remarks;
         private String customerId;
 
@@ -99,7 +103,7 @@ public class TestResult {
             this.assetClass = assetClass;
             return this;
         }
-        public Builder visualPass(PassFail visualPass){
+        public Builder visualPass(String visualPass){
             this.visualPass = visualPass;
             return this;
         }
@@ -119,11 +123,11 @@ public class TestResult {
             this.leakageMilliAmps = leakageMilliAmps;
             return this;
         }
-        public Builder polarityPass(PassFail polarityPass){
+        public Builder polarityPass(String polarityPass){
             this.polarityPass = polarityPass;
             return this;
         }
-        public Builder overallPass(PassFail overallPass){
+        public Builder overallPass(String overallPass){
             this.overallPass = overallPass;
             return this;
         }
