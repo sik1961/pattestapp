@@ -60,6 +60,9 @@ public class TestResult {
         this.id = id;
     }
 
+    /**
+     * Custom builder to incorporate object validation
+     */
     public static class Builder {
         private String id;
         private Date testDate;
@@ -148,6 +151,27 @@ public class TestResult {
             return this.isValid(testResult) ? testResult : null;
         }
         private boolean isValid(TestResult testResult) {
+            if (testResult.testDate == null) {
+                throw new IllegalArgumentException("Class 1: Test Date may not be null");
+            }
+            if (testResult.assetid == null) {
+                throw new IllegalArgumentException("Class 1: Asset Id may not be null");
+            }
+            if (testResult.assetClass == null) {
+                throw new IllegalArgumentException("Class 1: Asset Class may not be null");
+            }
+            if (testResult.visualPass == null) {
+                throw new IllegalArgumentException("Class 1: Visual Pass may not be null");
+            }
+            if (testResult.fuseRating == null) {
+                throw new IllegalArgumentException("Class 1: Fuse Rating may not be null");
+            }
+            if (testResult.customer == null) {
+                throw new IllegalArgumentException("Class 1: Customer may not be null");
+            }
+            if (testResult.overallPass == null) {
+                throw new IllegalArgumentException("Class 1: Overall Pass may not be null");
+            }
             if (testResult.assetClass == CLASS_1) {
                 if (testResult.earthBondOhms == null) {
                     throw new IllegalArgumentException("Class 1: Earth Bond Ohms may not be null");
