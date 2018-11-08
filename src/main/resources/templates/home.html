@@ -3,5 +3,16 @@
 <body>
 <h1>Hello !</h1>
 <p>Welcome to <span th:text="${appName}">Our App</span></p>
+
+<table border="1">
+    <th:block th:each="customer : ${customers}">
+        <tr>
+            <td th:text="${customer.id}">...</td>
+            <td th:text="${customer.name}">...</td>
+            <td th:text="${customer.contact}">...</td>
+        </tr>
+    </th:block>
+</table>
+
 </body>
 </html>

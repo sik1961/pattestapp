@@ -4,12 +4,15 @@ import com.sik.pattest.entity.Customer;
 import com.sik.pattest.entity.TestResult;
 import com.sik.pattest.repository.CustomerRepository;
 import com.sik.pattest.repository.TestResultsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class PatDataService {
 
+    @Autowired
     private CustomerRepository customerRepo;
+    @Autowired
     private TestResultsRepository testResultRepo;
 
     public List<Customer> getAllCustomers() {
