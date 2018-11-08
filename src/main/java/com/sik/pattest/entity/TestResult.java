@@ -52,9 +52,8 @@ public class TestResult {
     @Column
     private String remarks;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="customerid")
-    public Customer customer;
+    @Column(name="customerid")
+    public String customerId;
 
     public TestResult(String id) {
         this.id = id;
@@ -77,10 +76,12 @@ public class TestResult {
         private PassFail polarityPass;
         private PassFail overallPass;
         private String remarks;
-        private Customer customer;
+        private String customerId;
+
         public Builder(String id) {
             this.id = id;
         }
+
         public Builder testDate(Date testDate){
             this.testDate = testDate;
             return this;
@@ -129,8 +130,8 @@ public class TestResult {
             this.remarks = remarks;
             return this;
         }
-        public Builder customer(Customer customer){
-            this.customer = customer;
+        public Builder customerId(String customerId){
+            this.customerId = customerId;
             return this;
         }
         public TestResult build(){
@@ -147,7 +148,7 @@ public class TestResult {
             testResult.polarityPass = this.polarityPass;
             testResult.overallPass = this.overallPass;
             testResult.remarks = this.remarks;
-            testResult.customer = this.customer;
+            testResult.customerId = this.customerId;
             return this.isValid(testResult) ? testResult : null;
         }
         private boolean isValid(TestResult testResult) {
@@ -166,8 +167,8 @@ public class TestResult {
             if (testResult.fuseRating == null) {
                 throw new IllegalArgumentException("Class 1: Fuse Rating may not be null");
             }
-            if (testResult.customer == null) {
-                throw new IllegalArgumentException("Class 1: Customer may not be null");
+            if (testResult.customerId == null) {
+                throw new IllegalArgumentException("Class 1: Customer Id may not be null");
             }
             if (testResult.overallPass == null) {
                 throw new IllegalArgumentException("Class 1: Overall Pass may not be null");
