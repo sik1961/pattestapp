@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -23,6 +24,9 @@ public class TestResult {
 
     @Column(name="date", nullable=false)
     private Date testDate;
+
+    @Column(name="description", nullable=false)
+    private String description;
 
     @Column(name="assetid", nullable=false)
     private String assetid;
@@ -83,8 +87,8 @@ public class TestResult {
         private String remarks;
         private String customerId;
 
-        public Builder(String id) {
-            this.id = id;
+        public Builder() {
+            this.id = UUID.randomUUID().toString();
         }
 
         public Builder testDate(Date testDate){
@@ -140,7 +144,7 @@ public class TestResult {
             return this;
         }
         public TestResult build(){
-            TestResult testResult = new TestResult(this.id);
+            TestResult testResult = new TestResult();
             testResult.testDate = this.testDate;
             testResult.assetid = this.assetid;
             testResult.site = this.site;

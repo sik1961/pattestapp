@@ -4,10 +4,12 @@ import com.sik.pattest.service.PatDataService;
 import org.springframework.context.annotation.*;
 
 @Configuration
-@PropertySources(
-        //       @PropertySource("file:${props.location}/application.properties"),
-        @PropertySource("classpath:application.properties")
-)
+@PropertySource(value = {
+        "classpath:application.properties",
+        "classpath:hibernate.properties",
+        "file:${app.properties.location}/application.properties",
+        "file:${app.properties.location}/hibernate.properties"
+}, ignoreResourceNotFound = true)
 @ComponentScan
 public class AppConfig {
     @Bean

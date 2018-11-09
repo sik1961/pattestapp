@@ -19,10 +19,12 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@PropertySource({
+@PropertySource(value = {
         "classpath:application.properties",
-        "classpath:hibernate.properties"
-})
+        "classpath:hibernate.properties",
+        "file:${app.properties.location}/application.properties",
+        "file:${app.properties.location}/hibernate.properties"
+}, ignoreResourceNotFound = true)
 
 @EnableTransactionManagement
 public class PersistenceJPAConfig{
